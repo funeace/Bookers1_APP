@@ -1,18 +1,11 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h1>ようこそBookersへ！</h1>
+    <v-row>
+      <v-col offset="1" >
+        <p>Bookersでは、さまざまな書類に関するあなたの意見や<br>印象を共有し交換することができます</p>
+        <router-link to="/books">Start!</router-link>
+      </v-col>
+    </v-row>
   </div>
 </template>
-
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
-</script>
