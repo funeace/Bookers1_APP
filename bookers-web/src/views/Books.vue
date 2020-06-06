@@ -16,7 +16,7 @@
             <td>{{ book.title }}</td>
             <td>{{ book.body }}</td>
             <td><router-link :to="{name: 'book-show', params:{id: book.id}}">Show</router-link></td>
-            <td>Edit</td>
+            <td><router-link :to="{name: 'book-edit', params:{id: book.id}}">Edit</router-link></td>
             <td>Destroy</td>
           </tr>
         </tbody>

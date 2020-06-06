@@ -17,6 +17,13 @@ export default new Vuex.Store({
     add_book(state, book){
       const books = state.books.concat(book)
       state.books = books
+    },
+    edit_book(state, book){
+      state.books.forEach(b => {
+        if(b.id === book.id){
+          b = book
+        }
+      })
     }
   },
   actions: {
@@ -32,6 +39,13 @@ export default new Vuex.Store({
       // mutationのadd_bookを呼び出す
       commit('add_book', savedBook)
       return savedBook
+    },
+    async editBook({ commit }, book ){
+      console.log(book)
+      const res = await axios().put('/books/${book.id}/edit', book)
+      const editBook = res.data
+      commit('edit_book', editBook)
+      return editBook
     }
   }
 })
