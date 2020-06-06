@@ -11,6 +11,15 @@
             <th colspan="3"></th>
           </tr>
         </thead>
+        <tbody>
+          <tr v-for="book in books" :key="book.id">
+            <td>{{ book.title }}</td>
+            <td>{{ book.body }}</td>
+            <td>show</td>
+            <td>Edit</td>
+            <td>Destroy</td>
+          </tr>
+        </tbody>
       </table>
     </v-row>
 
@@ -28,7 +37,13 @@
 </template>
 
 <script>
+  // vuexのヘルパーをよびだす(先はstore/index.jsのstate)
+  import {mapState} from 'vuex'
+
   export default{
+    computed: {
+      ...mapState(['books'])
+    },
     data() {
       return {
         book: {}
