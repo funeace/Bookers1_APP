@@ -13,6 +13,10 @@ export default new Vuex.Store({
   mutations: {
     fetch_books(state, books){
       state.books = books
+    },
+    add_book(state, book){
+      const books = state.books.concat(book)
+      state.books = books
     }
   },
   actions: {
@@ -21,6 +25,13 @@ export default new Vuex.Store({
       await axios().get('/books').then(res => {
         commit('fetch_books', res.data)
       })
+    },
+    async addBook({ commit }, book){
+      const res = await axios().post('/books', book)
+      const savedBook = res.data
+      // mutationのadd_bookを呼び出す
+      commit('add_book', savedBook)
+      return savedBook
     }
   }
 })

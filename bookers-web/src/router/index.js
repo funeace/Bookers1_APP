@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Books from '../views/Books.vue'
+import BookShow from '../views/BookShow'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,13 @@ Vue.use(VueRouter)
     path: '/books',
     name: 'books',
     component: Books
+  },
+  {
+    path: '/books/:id',
+    name: 'book-show',
+    component: BookShow,
+    // パラメータを受け取れるようにする
+    params: true
   }
 ]
 

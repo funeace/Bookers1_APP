@@ -15,7 +15,7 @@
           <tr v-for="book in books" :key="book.id">
             <td>{{ book.title }}</td>
             <td>{{ book.body }}</td>
-            <td>show</td>
+            <td><router-link :to="{name: 'book-show', params:{id: book.id}}">Show</router-link></td>
             <td>Edit</td>
             <td>Destroy</td>
           </tr>
@@ -50,7 +50,12 @@
       }
     },
     methods: {
-      onSubmit() {
+      async onSubmit() {
+        // vuexのaddBookアクションを呼び出す
+        const book = await this.$store.dispatch('addBook', this.book)
+        this.$router.push({name: 'book-show',params: {id: book.id}})
+        this.book.title = ""
+        this.book.body = ""
       }
     }
   }
