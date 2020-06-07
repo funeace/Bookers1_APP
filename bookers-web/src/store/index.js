@@ -24,6 +24,10 @@ export default new Vuex.Store({
           b = book
         }
       })
+    },
+    delete_book(state, book){
+      const books = state.books.filter(b => b.id != book)
+      state.books = books
     }
   },
   actions: {
@@ -41,11 +45,15 @@ export default new Vuex.Store({
       return savedBook
     },
     async editBook({ commit }, book ){
-      console.log(book)
-      const res = await axios().put('/books/${book.id}/edit', book)
+      console.log(book.id)
+      const res = await axios().put(`/books/${book.id}`, book)
       const editBook = res.data
       commit('edit_book', editBook)
       return editBook
+    },
+    async deleteBook({ commit }, book) {
+      await axios().delete(`/books/${book.id}`, book)
+      commit('delete_book', book.id)
     }
   }
 })
