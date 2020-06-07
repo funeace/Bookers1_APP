@@ -30,7 +30,7 @@ class V1::BooksController < ApplicationController
   def destroy
     book = Book.find(params[:id])
     if book.destroy
-      render json: blog
+      render json: book
     end
   end
 

@@ -17,7 +17,7 @@
             <td>{{ book.body }}</td>
             <td><router-link :to="{name: 'book-show', params:{id: book.id}}">Show</router-link></td>
             <td><router-link :to="{name: 'book-edit', params:{id: book.id}}">Edit</router-link></td>
-            <td>Destroy</td>
+            <td><button @click="deleteBook(book)">Destroy</button></td>
           </tr>
         </tbody>
       </table>
@@ -56,6 +56,9 @@
         this.$router.push({name: 'book-show',params: {id: book.id}})
         this.book.title = ""
         this.book.body = ""
+      },
+      deleteBook(book) {
+        this.$store.dispatch('deleteBook', book)
       }
     }
   }
